@@ -1,0 +1,781 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Cyberattack Response Education</title>
+  <style>
+@import url('https://fonts.googleapis.com/css2?family=Rajdhani:wght@400;700&display=swap');
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Rajdhani', sans-serif;
+  background: linear-gradient(135deg, #0b0c0e, #1a1b1d);
+  background-size: 400% 400%;
+  animation: gradientShift 15s ease infinite;
+  color: #f1f1f1;
+  overflow: hidden;
+  padding: 20px;
+}
+
+@keyframes gradientShift {
+  0% {background-position: 0% 50%;}
+  50% {background-position: 100% 50%;}
+  100% {background-position: 0% 50%;}
+}
+
+h1 {
+  color: #00ffff;
+  text-align: center;
+  margin-bottom: 20px;
+  font-size: 36px;
+  text-shadow: 0 0 10px #00ffff;
+}
+
+#animation-box {
+  width: 90%;
+  max-width: 800px;
+  margin: 0 auto;
+  height: 450px;
+  background: rgba(0, 0, 0, 0.7);
+  border: 2px solid #00ffff55;
+  border-radius: 15px;
+  box-shadow: 0 0 20px #00ffff33;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  font-size: 1.2rem;
+  overflow: hidden;
+  position: relative;
+  backdrop-filter: blur(5px);
+}
+
+.animation-content {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.animation-text {
+  margin-bottom: 20px;
+  min-height: 80px;
+  text-align: center;
+  color: #ebefef;
+  font-size: 20px;
+  text-shadow: 0 0 5px #868b8b;
+}
+
+.animation-visual {
+  width: 300px;
+  height: 200px;
+  margin: 0 auto;
+  position: relative;
+  background-color: rgba(0, 0, 0, 0.6);
+  border: 2px solid #00ffff33;
+  border-radius: 12px;
+  box-shadow: 0 0 10px #00ffff22;
+}
+
+.buttons {
+  margin-top: 20px;
+}
+
+.button-group {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 10px;
+}
+
+button {
+  padding: 12px 25px;
+  border: none;
+  border-radius: 10px;
+  background: #00ffff;
+  color: #0b0c0e;
+  font-size: 1rem;
+  font-weight: bold;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 0 10px #00ffff55;
+}
+
+button:hover {
+  background: #00e6e6;
+  box-shadow: 0 0 20px #00ffffaa, 0 0 30px #00ffff55 inset;
+  transform: scale(1.05);
+}
+
+button:disabled {
+  background-color: #555;
+  color: #ccc;
+  cursor: not-allowed;
+}
+
+.computer {
+  width: 200px;
+  height: 150px;
+  background-color: #f6f6f6;
+  border-radius: 10px;
+  position: relative;
+  margin: 0 auto;
+  box-shadow: 0 0 10px #00ffff44;
+}
+
+.computer-screen {
+  width: 180px;
+  height: 100px;
+  background-color: #0b0c0e;
+  border: 2px solid #00ffff44;
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  border-radius: 1px;
+  overflow: hidden;
+}
+
+.computer-base {
+  width: 220px;
+  height: 10px;
+  background-color: #10151b;
+  position: absolute;
+  bottom: -10px;
+  left: -10px;
+  border-radius: 0 0 5px 5px;
+}
+
+.computer-stand {
+  width: 40px;
+  height: 20px;
+  background-color: #10151b;
+  position: absolute;
+  bottom: -30px;
+  left: 80px;
+}
+
+
+.progress-bar {
+  width: 100%;
+  height: 8px;
+  background-color: #0b0c0e;
+  border-radius: 4px;
+  margin-top: 10px;
+  overflow: hidden;
+  border: 1px solid #00ffff33;
+}
+
+.progress {
+  height: 100%;
+  background-color: #00ffff;
+  width: 0%;
+  transition: width 0.3s;
+}
+/* Target the image inside the cyber attack card */
+.card-container img {
+    display: block;
+    max-width: 80%; /* shrink the image */
+    height: auto; /* maintain aspect ratio */
+    margin: 20px auto; /* center the image horizontally with margin */
+    border-radius: 8px; /* optional: smooth corner */
+}
+.image-box {
+    width: 100%;
+    max-width: 400px;
+    margin: 0 auto;
+}
+
+
+/* Scrollbar for nice neon style */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #00ffff;
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: #0b0c0e;
+}
+
+/* Animations */
+@keyframes pulse {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.2); }
+  100% { transform: scale(1); }
+}
+
+@keyframes shake {
+  0%, 100% { transform: translateX(0); }
+  10%, 30%, 50%, 70%, 90% { transform: translateX(-5px); }
+  20%, 40%, 60%, 80% { transform: translateX(5px); }
+}
+
+.shake {
+  animation: shake 0.5s;
+}
+
+.fade-in {
+  animation: fadeIn 0.5s;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+  </style>
+</head>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Cyberattack Response Education</title>
+</head>
+<body>
+  <h1>Cyberattack Response Guide</h1>
+  <div id="animation-box">
+    <div class="animation-content">
+      <div class="animation-text">Press Play to begin</div>
+      <div class="animation-visual">
+        <div class="computer">
+          <div class="computer-screen"></div>
+          <div class="computer-base"></div>
+          <div class="computer-stand"></div>
+        </div>
+      </div>
+      <div class="progress-bar"><div class="progress"></div></div>
+    </div>
+  </div>
+  <div class="buttons button-group">
+    <button id="prev-btn" onclick="prevStep()" disabled>Previous</button>
+    <button id="play-btn" onclick="playStep()">Play</button>
+    <button id="pause-btn" onclick="pauseStep()" disabled>Pause</button>
+    <button id="restart-btn" onclick="restartStep()" disabled>Restart</button>
+    <button id="next-btn" onclick="nextStep()">Next</button>
+  </div>
+
+  <script>
+    const steps = [
+      {
+        title: "Phishing Attack",
+        animation: [
+          {text: "Phishing: Fraudulent attempt to obtain sensitive information by disguising as trustworthy entity.", visual: "showPhishingDefinition"},
+          {text: "You receive an email claiming to be from your bank asking to verify account details.", visual: "showPhishingEmail"},
+          {text: "Recognize signs: Urgent language, mismatched sender address, suspicious links.", visual: "showPhishingSigns"},
+          {text: "Action 1: Disconnect from network to prevent data leakage.", visual: "disconnectEthernet"},
+          {text: "Action 2: Change all passwords, especially for email and banking.", visual: "changePassword"},
+          {text: "Action 3: Sign out from all email sessions and enable MFA.", visual: "logoutEmail"}
+        ]
+      },
+      {
+        title: "Ransomware Attack",
+        animation: [
+          {text: "Ransomware: Malicious software that encrypts files and demands payment for decryption.", visual: "showRansomwareDefinition"},
+          {text: "Occurs via infected USB, malicious email attachments, or compromised websites.", visual: "showUsbConnectedStatic"},
+          {text: "Recognize signs: Files encrypted, ransom note, system slowdown.", visual: "showRansomwareWarningStatic"},
+          {text: "Action 1: Immediately unplug suspicious USB devices.", visual: "ejectUsbStatic"},
+          {text: "Action 2: Open Task Manager and end suspicious processes.", visual: "endMaliciousProcessStatic"},
+          {text: "Action 3: Freeze bank accounts to prevent ransom payment.", visual: "freezeAccountStatic"}
+        ]
+      },
+      {
+        title: "Filing Cyber Complaint",
+        animation: [
+          {text: "Report cybercrime to protect yourself and help authorities track criminals.", visual: "showComplaintDefinitionStatic"},
+          {text: "Gather evidence: Screenshots, emails, transaction details.", visual: "showComplaintEvidenceStatic"},
+          {text: "File complaint at cybercrime.gov.in with all details.", visual: "showComplaintFilingStatic"},
+          {text: "Keep complaint reference number for future follow-ups.", visual: "showComplaintReferenceStatic"}
+        ]
+      },
+      {
+        title: "Enable Multi-Factor Authentication",
+        animation: [
+          {text: "MFA adds extra security layer beyond just passwords.", visual: "showMFADefinitionStatic"},
+          {text: "Types: SMS codes, authenticator apps, biometric verification.", visual: "showMFATypesStatic"},
+          {text: "Enable MFA on all critical accounts: email, banking, social media.", visual: "enableMFAStatic"},
+          {text: "MFA prevents 99.9% of automated attacks when enabled.", visual: "showMFASuccessStatic"}
+        ]
+      },
+      {
+        title: "Call Cyber Crime Helpline 1930",
+        animation: [
+          {text: "1930: National cybercrime helpline for immediate assistance.", visual: "showHelplineDefinitionStatic"},
+          {text: "Call when you experience: Financial fraud, data theft, cyber extortion.", visual: "showHelplineCasesStatic"},
+          {text: "Provide details: Incident timeline, affected accounts, evidence.", visual: "showHelplineDetailsStatic"},
+          {text: "Helpline can guide on freezing transactions and legal procedures.", visual: "showHelplineSuccessStatic"}
+        ]
+      }
+    ];
+
+    let currentStep = 0;
+    let currentFrame = 0;
+    let interval;
+    let isPaused = false;
+    let animationTimeout;
+    const animationBox = document.getElementById("animation-box");
+    const animationContent = document.querySelector(".animation-content");
+    const animationText = document.querySelector(".animation-text");
+    const animationVisual = document.querySelector(".animation-visual");
+    const computerScreen = document.querySelector(".computer-screen");
+    const progressBar = document.querySelector(".progress");
+
+    // Phishing Attack Visuals (with animations)
+    function showPhishingDefinition() {
+      computerScreen.innerHTML = `
+        <div style="width:100%;height:90%;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:10px;text-align:center;background-color:#ffebee;">
+          <div style="font-size:40px;">🎣</div>
+          <div style="font-weight:bold;color:#d32f2f;margin-top:10px;">PHISHING ATTACK</div>
+          <div style="font-size:10px;margin-top:5px;">Fraudulent attempt to steal sensitive information</div>
+        </div>
+      `;
+    }
+
+    function showPhishingEmail() {
+      computerScreen.innerHTML = `
+        <div style="width:180px;height:90px;background-color:#fff;border-radius:5px;overflow:hidden;border:1px solid #ccc;">
+          <div style="height:20px;background-color:#d32f2f;color:white;display:flex;align-items:center;justify-content:center;font-size:12px;">URGENT: Verify Your Account</div>
+          <div style="padding:5px;font-size:10px;">
+            <div>Dear Customer,</div>
+            <div>Your account will be suspended unless you verify your details:</div>
+            <div style="color:#007bff;text-decoration:underline;cursor:pointer;">Click here to verify</div>
+            <div style="font-size:8px;color:#d32f2f;">From: support@fakebank.com</div>
+          </div>
+        </div>
+      `;
+    }
+
+    function showPhishingSigns() {
+      computerScreen.innerHTML = `
+        <div style="width:100%;height:90%;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:10px;background-color:#fff8e1;">
+          <div style="font-size:30px;animation:pulse 1.5s infinite;">⚠️</div>
+          <div style="font-weight:bold;color:#d32f2f;margin-top:10px;">PHISHING SIGNS</div>
+          <div style="display:flex;flex-wrap:wrap;justify-content:center;margin-top:5px;">
+            <div style="width:60px;margin:5px;text-align:center;">
+              <div style="font-size:30px;">❗</div>
+              <div style="font-size:8px;">Urgent language</div>
+            </div>
+            <div style="width:60px;margin:5px;text-align:center;">
+              <div style="font-size:30px;">✉️</div>
+              <div style="font-size:8px;">Fake sender</div>
+            </div>
+            <div style="width:60px;margin:5px;text-align:center;">
+              <div style="font-size:30px;">🔗</div>
+              <div style="font-size:8px;">Suspicious links</div>
+            </div>
+          </div>
+        </div>
+      `;
+    }
+
+    function disconnectEthernet() {
+      computerScreen.innerHTML = `
+        <div style="width:100%;height:90%;position:relative;background-color:#f5f5f5;">
+          <div style="width:100px;height:5px;background-color:#007bff;position:absolute;left:0px;top:80px;">
+            <div style="width:15px;height:10px;background-color:#333;position:absolute;left:0;top:-2.5px;border-radius:0 5px 5px 0;"></div>
+          </div>
+          <div style="font-size:30px;position:absolute;top:30px;left:70px;">📶</div>
+          <div style="position:absolute;top:40px;left:0;width:100%;text-align:center;color:#d32f2f;font-weight:bold;">
+            DISCONNECTING NETWORK...
+          </div>
+        </div>
+      `;
+      setTimeout(() => {
+        document.querySelector('.animation-visual div:nth-child(1)').style.left = '-200px';
+        document.querySelector('.animation-visual div:nth-child(2)').style.opacity = '0.3';
+      }, 800);
+    }
+
+    function changePassword() {
+      computerScreen.innerHTML = `
+        <div style="width:180px;height:90px;position:relative;background-color:#fff;border-radius:5px;overflow:hidden;border:1px solid #ccc;">
+          <div style="height:20px;background-color:#ff9800;color:white;display:flex;align-items:center;justify-content:center;font-size:12px;">Changing Password</div>
+          <div style="padding:5px;font-size:10px;display:flex;flex-direction:column;align-items:center;justify-content:center;height:75px;">
+            <div style="font-size:30px;">🔒</div>
+            <div style="margin-top:10px;font-size:12px;letter-spacing:2px;">••••••••••••</div>
+            <div style="font-size:8px;margin-top:5px;">Creating strong password</div>
+          </div>
+        </div>
+      `;
+    }
+
+    function logoutEmail() {
+      computerScreen.innerHTML = `
+        <div style="width:180px;height:90px;position:relative;background-color:#fff;border-radius:5px;overflow:hidden;border:1px solid #ccc;">
+          <div style="height:20px;background-color:#007bff;color:white;display:flex;align-items:center;justify-content:center;font-size:12px;">Logging Out</div>
+          <div style="padding:5px;font-size:10px;display:flex;flex-direction:column;align-items:center;justify-content:center;height:75px;">
+            <div style="font-size:12px;">Signing out from all sessions...</div>
+            <div style="font-size:30px;margin-top:10px;">📱</div>
+            <div style="font-size:8px;margin-top:5px;">Enabling Multi-Factor Authentication</div>
+          </div>
+        </div>
+      `;
+    }
+
+    // Static Visuals for other sections (no animations)
+    function showRansomwareDefinition() {
+      computerScreen.innerHTML = `
+        <div style="width:100%;height:90%;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:10px;text-align:center;background-color:#ffebee;">
+          <div style="font-size:40px;">🔐</div>
+          <div style="font-weight:bold;color:#d32f2f;margin-top:10px;">RANSOMWARE ATTACK</div>
+          <div style="font-size:10px;margin-top:5px;">Malware that encrypts files and demands payment</div>
+        </div>
+      `;
+    }
+
+    function showUsbConnectedStatic() {
+      computerScreen.innerHTML = `
+        <div style="width:100%;height:100%;position:relative;">
+          <div style="width:40px;height:15px;background-color:#007bff;position:absolute;right:30px;bottom:60px;border-radius:0 5px 5px 0;">
+            <div style="width:5px;height:10px;background-color:#333;position:absolute;left:-5px;top:2.5px;"></div>
+          </div>
+          <div style="width:40px;height:40px;background-image:url('data:image/svg+xml;utf8,<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 24 24\" fill=\"%23ffc107\"><path d=\"M1 21h22L12 2 1 21zm12-3h-2v-2h2v2zm0-4h-2v-4h2v4z\"/></svg>');background-size:contain;position:absolute;top:30px;left:70px;"></div>
+          <div style="position:absolute;top:75px;left:0;width:100%;text-align:center;font-size:12px;color:#d32f2f;font-weight:bold;">INFECTED USB DETECTED</div>
+        </div>
+      `;
+    }
+
+    function showRansomwareWarningStatic() {
+      computerScreen.innerHTML = `
+        <div style="width:100%;height:90%;display:flex;flex-direction:column;align-items:center;justify-content:center;background-color:#ffebee;">
+          <div style="display:flex;flex-wrap:wrap;justify-content:center;width:100px;">
+            <div style="width:30px;height:40px;background-color:#d32f2f;position:absolute;left:10px;top:30px;border:1px solid #ccc;"></div>
+            <div style="width:30px;height:40px;background-color:#e0e0e0;position:absolute;left:40px;top:30px;border:1px solid #ccc;"></div>
+            <div style="width:30px;height:40px;background-color:#d32f2f;position:absolute;left:70px;top:30px;border:1px solid #ccc;"></div>
+          </div>
+          <div style="font-weight:bold;color:#d32f2f;margin-top:10px;">FILES ENCRYPTED!</div>
+          <div style="font-size:8px;margin-top:10px;border:1px solid #d32f2f;padding:2px 5px;border-radius:3px;">
+            Pay 1 BTC to recover your files
+          </div>
+        </div>
+      `;
+    }
+
+    function ejectUsbStatic() {
+      computerScreen.innerHTML = `
+        <div style="width:100%;height:90%;display:flex;flex-direction:column;align-items:center;justify-content:center;background-color:#e8f5e9;">
+          <div style="width:40px;height:40px;background-image:url('data:image/svg+xml;utf8,<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 24 24\" fill=\"%2328a745\"><path d=\"M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41L9 16.17z\"/></svg>');background-size:contain;position:absolute;top:30px;left:70px;"></div>
+          <div style="font-weight:bold;color:#2e7d32;margin-top:10px;">USB REMOVED</div>
+          <div style="font-size:10px;">Device safely ejected</div>
+        </div>
+      `;
+    }
+
+    function endMaliciousProcessStatic() {
+      computerScreen.innerHTML = `
+        <div style="width:180px;height:90px;background-color:#fff;border-radius:5px;overflow:hidden;border:1px solid #ccc;">
+          <div style="height:20px;background-color:#007bff;color:white;display:flex;align-items:center;justify-content:center;font-size:12px;">Task Manager</div>
+          <div style="padding:5px;font-size:10px;">
+            <div style="display:flex;justify-content:space-between;margin-bottom:3px;"><span>explorer.exe</span><span>8%</span></div>
+            <div style="display:flex;justify-content:space-between;margin-bottom:3px;"><span>chrome.exe</span><span>10%</span></div>
+            <div style="display:flex;justify-content:space-between;"><span>svchost.exe</span><span>3%</span></div>
+            <div style="color:#28a745;text-align:center;margin-top:10px;">Malicious task ended</div>
+          </div>
+        </div>
+      `;
+    }
+
+    function freezeAccountStatic() {
+      computerScreen.innerHTML = `
+        <div style="width:180px;height:90px;background-color:#fff;border-radius:5px;overflow:hidden;border:1px solid #ccc;">
+          <div style="height:20px;background-color:#4caf50;color:white;display:flex;align-items:center;justify-content:center;font-size:12px;">Account Frozen</div>
+          <div style="padding:5px;font-size:10px;color:#4caf50;text-align:center;height:75px;">
+            <div style="font-size:14px;margin-top:20px;">✓ Account secured</div>
+            <div style="font-size:12px;margin-top:10px;">No transactions allowed</div>
+          </div>
+        </div>
+      `;
+    }
+
+    function showComplaintDefinitionStatic() {
+      computerScreen.innerHTML = `
+        <div style="width:100%;height:90%;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:10px;text-align:center;">
+          <div style="font-size:40px;">📝</div>
+          <div style="font-weight:bold;color:#d32f2f;margin-top:10px;">CYBER COMPLAINT</div>
+          <div style="font-size:10px;margin-top:5px;">Official report to document cybercrime</div>
+        </div>
+      `;
+    }
+
+    function showComplaintEvidenceStatic() {
+      computerScreen.innerHTML = `
+        <div style="width:100%;height:90%;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:10px;background-color:#fff8e1;">
+          <div style="font-weight:bold;color:#d32f2f;">GATHER EVIDENCE</div>
+          <div style="display:flex;flex-wrap:wrap;justify-content:center;margin-top:10px;">
+            <div style="width:30px;height:30px;background-color:#e0e0e0;margin:2px;border:1px solid #ccc;display:flex;align-items:center;justify-content:center;">📷</div>
+            <div style="width:30px;height:30px;background-color:#e0e0e0;margin:2px;border:1px solid #ccc;display:flex;align-items:center;justify-content:center;">📧</div>
+            <div style="width:30px;height:30px;background-color:#e0e0e0;margin:2px;border:1px solid #ccc;display:flex;align-items:center;justify-content:center;">💳</div>
+            <div style="width:30px;height:30px;background-color:#e0e0e0;margin:2px;border:1px solid #ccc;display:flex;align-items:center;justify-content:center;">🕒</div>
+          </div>
+          <div style="font-size:10px;margin-top:5px;text-align:left;">
+            • Screenshots • Email headers<br>
+            • Transaction IDs • Timestamps
+          </div>
+        </div>
+      `;
+    }
+
+    function showComplaintFilingStatic() {
+      computerScreen.innerHTML = `
+        <div style="width:100%;height:90%;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:10px;">
+          <div style="font-size:40px;">💻</div>
+          <div style="font-weight:bold;margin-top:10px;">FILE AT</div>
+          <div style="font-size:12px;color:#007bff;">cybercrime.gov.in</div>
+          <div style="font-size:8px;margin-top:5px;">Provide complete details of incident</div>
+        </div>
+      `;
+    }
+
+    function showComplaintReferenceStatic() {
+      computerScreen.innerHTML = `
+        <div style="width:100%;height:90%;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:10px;background-color:#e8f5e9;">
+          <div style="font-weight:bold;color:#2e7d32;">COMPLAINT FILED</div>
+          <div style="font-size:10px;margin-top:10px;">Reference Number:</div>
+          <div style="font-weight:bold;font-size:12px;">CRN123456789</div>
+          <div style="font-size:8px;margin-top:10px;">Keep this for future reference</div>
+        </div>
+      `;
+    }
+
+    function showMFADefinitionStatic() {
+      computerScreen.innerHTML = `
+        <div style="width:100%;height:90%;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:10px;text-align:center;">
+          <div style="font-size:40px;">🔐</div>
+          <div style="font-weight:bold;color:#007bff;margin-top:10px;">MULTI-FACTOR AUTHENTICATION</div>
+          <div style="font-size:10px;margin-top:5px;">Extra security layer beyond just passwords</div>
+        </div>
+      `;
+    }
+
+    function showMFATypesStatic() {
+      computerScreen.innerHTML = `
+        <div style="width:100%;height:90%;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:10px;">
+          <div style="font-weight:bold;color:#007bff;">MFA TYPES</div>
+          <div style="display:flex;flex-wrap:wrap;justify-content:center;margin-top:5px;">
+            <div style="width:60px;margin:5px;text-align:center;">
+              <div style="font-size:30px;">📱</div>
+              <div style="font-size:8px;">SMS codes</div>
+            </div>
+            <div style="width:60px;margin:5px;text-align:center;">
+              <div style="font-size:30px;">🛡️</div>
+              <div style="font-size:8px;">Authenticator</div>
+            </div>
+            <div style="width:60px;margin:5px;text-align:center;">
+              <div style="font-size:30px;">👁️</div>
+              <div style="font-size:8px;">Biometrics</div>
+            </div>
+          </div>
+        </div>
+      `;
+    }
+
+    function enableMFAStatic() {
+      computerScreen.innerHTML = `
+        <div style="width:100%;height:90%;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:10px;">
+          <div style="font-size:40px;">🔒</div>
+          <div style="font-weight:bold;margin-top:10px;">ENABLE ON:</div>
+          <div style="display:flex;flex-wrap:wrap;justify-content:center;margin-top:5px;">
+            <div style="width:40px;margin:2px;text-align:center;">
+              <div style="font-size:20px;">📧</div>
+            </div>
+            <div style="width:40px;margin:2px;text-align:center;">
+              <div style="font-size:20px;">🏦</div>
+            </div>
+            <div style="width:40px;margin:2px;text-align:center;">
+              <div style="font-size:20px;">💬</div>
+            </div>
+            <div style="width:40px;margin:2px;text-align:center;">
+              <div style="font-size:20px;">☁️</div>
+            </div>
+          </div>
+          <div style="font-size:8px;margin-top:5px;">Email • Banking • Social • Cloud</div>
+        </div>
+      `;
+    }
+
+    function showMFASuccessStatic() {
+      computerScreen.innerHTML = `
+        <div style="width:100%;height:90%;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:10px;background-color:#e8f5e9;">
+          <div style="font-size:40px;">✅</div>
+          <div style="font-weight:bold;color:#2e7d32;margin-top:10px;">MFA ENABLED</div>
+          <div style="font-size:10px;margin-top:10px;text-align:center;">Prevents 99.9% of automated attacks</div>
+        </div>
+      `;
+    }
+
+    function showHelplineDefinitionStatic() {
+      computerScreen.innerHTML = `
+        <div style="width:100%;height:90%;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:10px;text-align:center;">
+          <div style="font-size:50px;font-weight:bold;color:#d32f2f;">1930</div>
+          <div style="font-size:10px;margin-top:5px;">National Cyber Crime Helpline</div>
+        </div>
+      `;
+    }
+
+    function showHelplineCasesStatic() {
+      computerScreen.innerHTML = `
+        <div style="width:100%;height:90%;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:10px;">
+          <div style="font-weight:bold;color:#d32f2f;">CALL FOR:</div>
+          <div style="display:flex;flex-wrap:wrap;justify-content:center;margin-top:5px;">
+            <div style="width:60px;margin:5px;text-align:center;">
+              <div style="font-size:30px;">💸</div>
+              <div style="font-size:8px;">Financial fraud</div>
+            </div>
+            <div style="width:60px;margin:5px;text-align:center;">
+              <div style="font-size:30px;">📁</div>
+              <div style="font-size:8px;">Data theft</div>
+            </div>
+            <div style="width:60px;margin:5px;text-align:center;">
+              <div style="font-size:30px;">🔐</div>
+              <div style="font-size:8px;">Extortion</div>
+            </div>
+          </div>
+        </div>
+      `;
+    }
+
+    function showHelplineDetailsStatic() {
+      computerScreen.innerHTML = `
+        <div style="width:100%;height:90%;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:10px;">
+          <div style="font-weight:bold;color:#d32f2f;">PROVIDE:</div>
+          <div style="display:flex;flex-wrap:wrap;justify-content:center;margin-top:5px;">
+            <div style="width:60px;margin:5px;text-align:center;">
+              <div style="font-size:30px;">🕒</div>
+              <div style="font-size:8px;">Timeline</div>
+            </div>
+            <div style="width:60px;margin:5px;text-align:center;">
+              <div style="font-size:30px;">👤</div>
+              <div style="font-size:8px;">Accounts</div>
+            </div>
+            <div style="width:60px;margin:5px;text-align:center;">
+              <div style="font-size:30px;">💳</div>
+              <div style="font-size:8px;">Transactions</div>
+            </div>
+            <div style="width:60px;margin:5px;text-align:center;">
+              <div style="font-size:30px;">📷</div>
+              <div style="font-size:8px;">Evidence</div>
+            </div>
+          </div>
+        </div>
+      `;
+    }
+
+    function showHelplineSuccessStatic() {
+      computerScreen.innerHTML = `
+        <div style="width:100%;height:90%;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:10px;background-color:#e8f5e9;">
+          <div style="font-size:40px;">📞</div>
+          <div style="font-weight:bold;color:#2e7d32;margin-top:10px;">HELP IS AVAILABLE</div>
+          <div style="font-size:10px;text-align:center;">Helpline can guide on freezing transactions and legal procedures</div>
+        </div>
+      `;
+    }
+
+    function updateButtons() {
+      document.getElementById("prev-btn").disabled = currentStep === 0;
+      document.getElementById("next-btn").disabled = currentStep === steps.length - 1;
+      document.getElementById("restart-btn").disabled = false;
+      document.getElementById("pause-btn").disabled = false;
+    }
+
+    function updateVisual() {
+      const frame = steps[currentStep].animation[currentFrame];
+      if (frame.visual && typeof this[frame.visual] === 'function') {
+        this[frame.visual]();
+      }
+      
+      // Update progress
+      const progress = (currentFrame + 1) / steps[currentStep].animation.length * 100;
+      progressBar.style.width = `${progress}%`;
+    }
+
+    function pauseStep() {
+      if (isPaused) {
+        // Resume animation
+        isPaused = false;
+        document.getElementById("pause-btn").textContent = "Pause";
+        playNextFrame();
+      } else {
+        // Pause animation
+        isPaused = true;
+        document.getElementById("pause-btn").textContent = "Resume";
+        clearInterval(interval);
+        clearTimeout(animationTimeout);
+      }
+    }
+
+    function playNextFrame() {
+      if (isPaused) return;
+      
+      const scene = steps[currentStep];
+      if (currentFrame < scene.animation.length - 1) {
+        currentFrame++;
+        
+        // Build the text with line breaks
+        let fullText = `<strong>${scene.title}</strong><br /><br />`;
+        for (let i = 0; i <= currentFrame; i++) {
+          if (i > 0) fullText += '<br />';
+          fullText += scene.animation[i].text;
+        }
+        animationText.innerHTML = fullText;
+        
+        updateVisual();
+        
+        // Use timeout instead of interval for better control
+        animationTimeout = setTimeout(playNextFrame, 2000);
+      } else {
+        clearInterval(interval);
+        clearTimeout(animationTimeout);
+      }
+    }
+
+    function playStep() {
+      clearInterval(interval);
+      clearTimeout(animationTimeout);
+      const scene = steps[currentStep];
+      currentFrame = 0;
+      
+      animationText.innerHTML = `<strong>${scene.title}</strong><br /><br />${scene.animation[currentFrame].text}`;
+      updateVisual();
+      
+      isPaused = false;
+      document.getElementById("pause-btn").disabled = false;
+      document.getElementById("pause-btn").textContent = "Pause";
+      
+      // Start the animation sequence
+      animationTimeout = setTimeout(playNextFrame, 2000);
+      
+      updateButtons();
+    }
+
+    function restartStep() {
+      isPaused = false;
+      document.getElementById("pause-btn").textContent = "Pause";
+      playStep();
+    }
+
+    function nextStep() {
+      if (currentStep < steps.length - 1) {
+        currentStep++;
+        playStep();
+      }
+    }
+
+    function prevStep() {
+      if (currentStep > 0) {
+        currentStep--;
+        playStep();
+      }
+    }
+  </script>
+</body>
+</html>

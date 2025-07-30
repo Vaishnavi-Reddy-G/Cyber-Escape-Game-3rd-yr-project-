@@ -1,0 +1,1002 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cyber Threat Information</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Rajdhani:wght@400;700&display=swap');
+        
+        * {
+          margin: 0;
+          padding: 0;
+          box-sizing: border-box;
+        }
+        
+        body {
+          font-family: 'Rajdhani', sans-serif;
+          background: linear-gradient(135deg, #0b0c0e, #1a1b1d);
+          background-size: 400% 400%;
+          animation: gradientShift 15s ease infinite;
+          color: #f1f1f1;
+          overflow: hidden;
+        }
+        
+        @keyframes gradientShift {
+          0% {background-position: 0% 50%;}
+          50% {background-position: 100% 50%;}
+          100% {background-position: 0% 50%;}
+        }
+        
+        .header {
+          background: #0b0c0e;
+          color: #00ffff;
+          text-align: center;
+          padding: 25px;
+          font-size: 32px;
+          font-weight: 700;
+          text-shadow: 0 0 10px #00ffff;
+        }
+        
+        .main-container {
+          display: flex;
+          height: calc(100vh - 80px);
+          overflow: hidden;
+        }
+        
+        .sidebar {
+          background: #10151b;
+          width: 270px;
+          min-width: 180px;
+          color: #00ffff;
+          padding: 20px;
+          position: relative;
+          overflow-y: auto;
+          transition: all 0.5s ease;
+          box-shadow: 2px 0 10px rgba(0,255,255,0.2);
+        }
+        
+        .sidebar .item, .sidebar .Animation {
+          padding: 15px 10px;
+          margin-bottom: 15px;
+          border-bottom: 1px solid #00ffff44;
+          cursor: pointer;
+          transition: 0.3s ease;
+        }
+        
+        .sidebar .item:hover, .sidebar .Animation:hover {
+          background: #00ffff11;
+          text-shadow: 0 0 5px #00ffff;
+        }
+        
+        .content {
+          flex-grow: 1;
+          padding: 20px;
+          overflow-y: auto;
+        }
+        
+        #info-display, #quiz-display {
+          background: rgba(0, 0, 0, 0.7);
+          padding: 25px;
+          border-radius: 12px;
+          box-shadow: 0 0 20px rgba(0,255,255,0.2);
+          overflow-y: auto;
+          max-height: 85vh;
+          animation: fadeIn 1s ease;
+        }
+        
+        @keyframes fadeIn {
+          from {opacity: 0; transform: translateY(20px);}
+          to {opacity: 1; transform: translateY(0);}
+        }
+        
+        h1 {
+          color: #00e6e6;
+          text-align: center;
+          margin-bottom: 20px;
+          font-size: 30px;
+        }
+        
+        p {
+          margin-bottom: 15px;
+          background: rgba(0,255,255,0.05);
+          padding: 10px;
+          border-left: 4px solid #00ffff;
+          border-radius: 8px;
+          line-height: 1.6;
+        }
+        
+        ul li {
+          margin: 10px 0;
+          transition: transform 0.3s;
+        }
+        
+        ul li:hover {
+          transform: scale(1.05);
+          color: #ff6666;
+        }
+        
+        img {
+          width: 100%;
+          border-radius: 10px;
+          margin: 15px 0;
+          transition: transform 0.4s;
+        }
+        
+        img:hover {
+          transform: scale(1.03);
+          box-shadow: 0 0 20px rgba(0,255,255,0.3);
+        }
+        
+        /* Quiz styles */
+        .quiz-header {
+          color: #00ffff;
+          font-size: 28px;
+          margin-bottom: 20px;
+          text-align: center;
+        }
+        
+        .quiz-progress {
+          text-align: center;
+          margin-bottom: 15px;
+          font-weight: bold;
+          color: #5bc0de;
+        }
+        
+        .quiz-question {
+          font-size: 22px;
+          font-weight: bold;
+          margin-bottom: 20px;
+        }
+        
+        .quiz-option {
+          background: #121212;
+          padding: 15px;
+          border-radius: 8px;
+          margin-bottom: 10px;
+          cursor: pointer;
+          transition: 0.3s;
+        }
+        
+        .quiz-option:hover {
+          background: #00ffff22;
+        }
+        
+        .quiz-option.selected {
+          background: #00ffff33;
+        }
+        
+        .quiz-option.wrong {
+          background: #ff4d4d88;
+        }
+        
+        .quiz-feedback {
+          margin-top: 15px;
+          padding: 12px;
+          border-radius: 8px;
+        }
+        
+        .quiz-feedback.correct {
+          background: #28a74533;
+          color: #28a745;
+        }
+        
+        .quiz-feedback.incorrect {
+          background: #dc354533;
+          color: #dc3545;
+        }
+        
+        .quiz-navigation {
+          display: flex;
+          justify-content: space-between;
+          margin-top: 20px;
+        }
+        
+        .quiz-button {
+          background: #00ffff;
+          color: black;
+          padding: 10px 20px;
+          border: none;
+          border-radius: 8px;
+          cursor: pointer;
+          font-weight: bold;
+          font-size: 16px;
+        }
+        
+        .quiz-button:hover {
+          background: #00e6e6;
+        }
+        
+        .quiz-result {
+          text-align: center;
+          font-size: 22px;
+          margin-top: 20px;
+        }
+        
+        /* Scrollbars */
+        ::-webkit-scrollbar {
+          width: 8px;
+        }
+        
+        ::-webkit-scrollbar-thumb {
+          background: #00ffff;
+          border-radius: 10px;
+        }
+        
+        ::-webkit-scrollbar-track {
+          background: #0b0c0e;
+        }
+        .sidebar .item, .sidebar .Animation {
+  background: #10151b;
+  color: #00ffff;
+  padding: 15px 20px;
+  margin-bottom: 15px;
+  border: 2px solid #00ffff55;
+  border-radius: 8px;
+  font-weight: bold;
+  text-align: center;
+  transition: all 0.4s ease;
+  box-shadow: 0 0 5px #00ffff22;
+  cursor: pointer;
+}
+
+.sidebar .item:hover, .sidebar .Animation:hover {
+  background: #00ffff;
+  color: #0b0c0e;
+  border: 2px solid #00ffff;
+  box-shadow: 0 0 15px #00ffff88, 0 0 25px #00ffff44 inset;
+  transform: scale(1.05);
+}
+        </style>
+        
+</head>
+<body>
+    <div class="header">CYBER ATTACKS</div>
+    <div class="main-container">
+        <div class="sidebar" id="sidebar">
+            <div class="item" onclick="showInfo('ransomware')">Ransomware</div>
+            <div class="item" onclick="showInfo('phishing')">Phishing</div>
+            <div class="item" onclick="showInfo('bec')">Business Email Compromise (BEC)</div>
+            <div class="item" onclick="showInfo('card_skimming')">Payment Card Skimming</div>
+            <div class="item" onclick="showInfo('insider_threats')">Insider Threats</div>
+            <div class="item" onclick="showInfo('ddos')">Distributed Denial of Service (DDoS)</div>
+            <div class="item" onclick="showInfo('supply_chain')">Supply Chain Attacks</div>
+            <div class="item" onclick="startQuiz()">Quiz</div>
+            <div class="Animation" onclick="animateSidebar()">Animation</div>
+            <div class="resizer" id="resizer"></div>
+        </div>
+        <div class="content">
+            <div id="info-display"></div>
+            <div id="quiz-display">
+                <h2 class="quiz-header">Cyber Security Knowledge Test</h2>
+                <div class="quiz-progress" id="quiz-progress">Question 1 of 10</div>
+                <div class="quiz-question" id="quiz-question"></div>
+                <div id="quiz-options"></div>
+                <div class="quiz-feedback" id="quiz-feedback"></div>
+                <div class="quiz-navigation">
+                    <button class="quiz-button" id="quiz-prev" onclick="prevQuestion()" disabled>Previous</button>
+                    <button class="quiz-button" id="quiz-next" onclick="nextQuestion()">Next</button>
+                </div>
+                <div class="quiz-result" id="quiz-result"></div>
+                <div class="game-container" id="game-container">
+                    <h3>Congratulations! You passed the quiz!</h3>
+                    <button class="game-button" onclick="startGame()">Start Game</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script>
+        // Sidebar Resizing Logic
+        const sidebar = document.getElementById('sidebar');
+        const resizer = document.getElementById('resizer');
+        let isResizing = false;
+
+        resizer.addEventListener('mousedown', function (e) {
+            isResizing = true;
+            document.addEventListener('mousemove', resizeSidebar);
+            document.addEventListener('mouseup', stopResizing);
+            document.body.style.userSelect = 'none';
+            e.preventDefault();
+        });
+
+        function stopResizing() {
+            isResizing = false;
+            document.removeEventListener('mousemove', resizeSidebar);
+            document.removeEventListener('mouseup', stopResizing);
+            document.body.style.userSelect = '';
+        }
+
+        function resizeSidebar(e) {
+            if (isResizing) {
+                let newWidth = e.clientX;
+                let minWidth = 150;
+                let maxWidth = window.innerWidth * 0.5;
+
+                if (newWidth > minWidth && newWidth < maxWidth) {
+                    sidebar.style.width = newWidth + 'px';
+                }
+            }
+        }
+
+        // Quiz Data
+        
+        const quizQuestions = [
+            
+    {
+        question: "Scenario: An employee’s workstation is infected with ransomware, encrypting local files and attempting to spread across the network. What is the CORRECT sequence of actions?",
+        options: [
+            "Disconnect → Run antivirus → Notify team → Restore backups",
+            "Run antivirus → Disconnect → Restore backups → Notify team",
+            "Notify team → Restore backups → Disconnect → Run antivirus",
+            "Restore backups → Disconnect → Notify team → Run antivirus"
+        ],
+        answer: 0,
+        explanation: "The correct sequence is: 1) Disconnect the infected machine from the network (to prevent spread), 2) Run an antivirus scan, 3) Notify the incident response team, 4) Restore files from backup. Isolation is always the first priority in ransomware cases."
+    },
+    {
+        question: "Scenario: A phishing attack compromised several employee credentials, and attackers are logging into cloud accounts. What should be done NEXT after forcing a password reset?",
+        options: [
+            "Enable Multi-Factor Authentication (MFA) for all accounts",
+            "Check login logs for unauthorized access",
+            "Send an awareness email about phishing",
+            "Wait to see if attackers return"
+        ],
+        answer: 1,
+        explanation: "After securing accounts with password resets, the immediate next step is to investigate the breach extent by checking login logs. This helps determine what data may have been accessed."
+    },
+    {
+        question: "Scenario: A ransomware attack encrypted files on multiple servers. The IT team has isolated infected systems. What is the NEXT critical step?",
+        options: [
+            "Contact law enforcement and negotiate with attackers",
+            "Identify the ransomware strain and check for decryption tools",
+            "Restore data from offline backups",
+            "Wipe all infected servers and reinstall OS"
+        ],
+        answer: 2,
+        explanation: "After containment (isolation), recovery is the priority. Restoring from offline backups is the most reliable method if available. Never pay the ransom unless as an absolute last resort."
+    },
+    {
+        question: "Scenario: An SQL injection attack exposed customer data from a web application. Rank these actions in order of priority: 1) Patch the application, 2) Notify customers, 3) Take application offline, 4) Analyze logs",
+        options: [
+            "Take down → Patch → Investigate → Notify",
+            "Patch → Take down → Notify → Investigate",
+            "Investigate → Notify → Take down → Patch",
+            "Notify → Patch → Investigate → Take down"
+        ],
+        answer: 0,
+        explanation: "Correct sequence: 1) Take the application offline (stop active breach), 2) Patch the vulnerability, 3) Analyze logs to determine impact, 4) Notify affected customers after understanding scope."
+    },
+    {
+        question: "Scenario: An employee is suspected of stealing intellectual property. What is the BEST course of action?",
+        options: [
+            "Revoke access → Collect evidence → Inform HR/Legal",
+            "Confront employee → Revoke access → Collect evidence",
+            "Inform Legal first → Revoke access → Confront",
+            "Gather proof → Confront → Inform HR"
+        ],
+        answer: 0,
+        explanation: "For insider threats: 1) Immediately revoke access to prevent further damage, 2) Preserve evidence (logs, emails), 3) Escalate to HR/legal for proper investigation. Avoid confrontation before evidence collection."
+    },
+    {
+        question: "Scenario: A critical server is hit by a zero-day exploit, and no patch is available yet. What is the BEST mitigation sequence?",
+        options: [
+            "Isolate → Apply workarounds → Monitor → Wait for patch",
+            "Try fixes → Isolate → Wait for patch → Monitor",
+            "Wait for patch → Isolate → Apply workarounds → Monitor",
+            "Monitor → Apply workarounds → Isolate → Wait for patch"
+        ],
+        answer: 0,
+        explanation: "For zero-days: 1) Isolate affected systems (containment), 2) Apply temporary mitigations like firewall rules, 3) Monitor for spread, 4) Apply vendor patch when available. Speed is critical."
+    },
+    {
+        question: "Scenario: An employee reports that their workstation is running slowly, and they notice unusual network activity. Suspicious files are found in the downloads folder. What is the FIRST action to take?",
+        options: [
+            "Restart the computer to stop the malware",
+            "Disconnect the system from the network immediately",
+            "Run an antivirus scan and wait for results",
+            "Inform the employee to ignore it and continue working"
+        ],
+        answer: 1,
+        explanation: "The FIRST action should always be to disconnect from the network (physically or logically) to prevent potential malware from spreading to other systems."
+    },
+    {
+        question: "Scenario: A database containing customer PII (Personally Identifiable Information) was breached. What is the FIRST legal/ethical step?",
+        options: [
+            "Notify affected customers and regulatory bodies",
+            "Delete logs to prevent further exposure",
+            "Wait to confirm if data was actually stolen",
+            "Blame the IT team internally to avoid liability"
+        ],
+        answer: 0,
+        explanation: "Most regulations (GDPR, CCPA) require prompt notification when PII is breached. Transparency is both legally required and ethically correct."
+    },
+    {
+        question: "Scenario: A DDoS attack is overwhelming your company's web servers. What is the BEST immediate action?",
+        options: [
+            "Reboot all servers to clear the traffic",
+            "Contact your ISP to filter malicious traffic",
+            "Ignore it, as DDoS attacks are temporary",
+            "Shut down the website indefinitely"
+        ],
+        answer: 1,
+        explanation: "ISPs can implement traffic filtering upstream. Reboots may provide temporary relief but won't stop the attack. Never ignore a sustained DDoS."
+    },
+    {
+        question: "Scenario: A misconfigured cloud storage bucket is exposing sensitive data publicly. What should be done FIRST?",
+        options: [
+            "Delete the bucket to prevent further exposure",
+            "Set the bucket to private and audit access logs",
+            "Post a public notice about the leak",
+            "Ignore it if no one has reported misuse yet"
+        ],
+        answer: 1,
+        explanation: "First secure the bucket (set to private), then investigate potential access. Never delete evidence before investigation, and don't delay remediation."
+    }
+];
+
+        let currentQuestion = 0;
+        let score = 0;
+        let userAnswers = new Array(quizQuestions.length).fill(null);
+
+        function startQuiz() {
+            document.getElementById('info-display').style.display = 'none';
+            document.getElementById('quiz-display').style.display = 'block';
+            document.getElementById('game-container').style.display = 'none';
+            currentQuestion = 0;
+            score = 0;
+            userAnswers = new Array(quizQuestions.length).fill(null);
+            showQuestion();
+        }
+
+        function animateSidebar() {
+    // Hide all other content sections (similar to startQuiz)
+    document.getElementById('info-display').style.display = 'none';
+    document.getElementById('quiz-display').style.display = 'none';
+    document.getElementById('game-container').style.display = 'none';
+    
+    // Redirect to animations page
+    window.location.href = 'index.html';
+    
+    // Optional: Add animation before redirect if desired
+    document.body.classList.add('fade-out');
+    setTimeout(() => {
+        window.location.href = 'index1.html';
+    }, 3000); // Match this duration with your CSS transition
+}
+
+        function showQuestion() {
+            const question = quizQuestions[currentQuestion];
+            document.getElementById('quiz-question').textContent = question.question;
+            
+            const optionsContainer = document.getElementById('quiz-options');
+            optionsContainer.innerHTML = '';
+            
+            question.options.forEach((option, index) => {
+                const optionElement = document.createElement('div');
+                optionElement.className = 'quiz-option';
+                if (userAnswers[currentQuestion] === index) {
+                    optionElement.classList.add('selected');
+                    if (index !== question.answer) {
+                        optionElement.classList.add('wrong');
+                    }
+                }
+                optionElement.textContent = option;
+                optionElement.onclick = () => selectOption(index);
+                optionsContainer.appendChild(optionElement);
+            });
+            
+            document.getElementById('quiz-feedback').style.display = 'none';
+            document.getElementById('quiz-prev').disabled = currentQuestion === 0;
+            document.getElementById('quiz-next').textContent = 
+                currentQuestion === quizQuestions.length - 1 ? 'Submit' : 'Next';
+            document.getElementById('quiz-progress').textContent = 
+                `Question ${currentQuestion + 1} of ${quizQuestions.length}`;
+            document.getElementById('quiz-result').textContent = '';
+        }
+
+        function selectOption(index) {
+            const question = quizQuestions[currentQuestion];
+            const feedback = document.getElementById('quiz-feedback');
+            const options = document.getElementById('quiz-options').querySelectorAll('.quiz-option');
+            
+            // Remove previous selections
+            options.forEach(opt => {
+                opt.classList.remove('selected', 'wrong');
+            });
+            
+            // Mark current selection
+            options[index].classList.add('selected');
+            if (index !== question.answer) {
+                options[index].classList.add('wrong');
+                options[question.answer].classList.add('selected');
+            }
+            
+            userAnswers[currentQuestion] = index;
+            
+            if (index === question.answer) {
+                feedback.className = 'quiz-feedback correct';
+                feedback.textContent = 'Correct! ' + question.explanation;
+            } else {
+                feedback.className = 'quiz-feedback incorrect';
+                feedback.textContent = `Incorrect. The correct answer is: ${question.options[question.answer]}. ${question.explanation}`;
+            }
+            
+            feedback.style.display = 'block';
+        }
+
+        function nextQuestion() {
+            if (userAnswers[currentQuestion] === null) {
+                alert('Please select an answer before proceeding.');
+                return;
+            }
+
+            if (currentQuestion < quizQuestions.length - 1) {
+                currentQuestion++;
+                showQuestion();
+            } else {
+                showResults();
+            }
+        }
+
+        function prevQuestion() {
+            if (currentQuestion > 0) {
+                currentQuestion--;
+                showQuestion();
+            }
+        }
+
+        function showResults() {
+            // Calculate score
+            score = 0;
+            for (let i = 0; i < quizQuestions.length; i++) {
+                if (userAnswers[i] === quizQuestions[i].answer) {
+                    score++;
+                }
+            }
+            
+            const percentage = (score / quizQuestions.length) * 100;
+            const resultElement = document.getElementById('quiz-result');
+            
+            if (percentage >= 50) {
+                resultElement.textContent = `Congratulations! You scored ${score}/10 (${percentage}%) - You passed!`;
+                resultElement.className = 'quiz-result quiz-pass';
+                document.getElementById('game-container').style.display = 'block';
+            } else {
+                resultElement.textContent = `You scored ${score}/10 (${percentage}%) - Please try again to unlock the game.`;
+                resultElement.className = 'quiz-result quiz-fail';
+            }
+            
+            document.getElementById('quiz-question').textContent = 'Quiz Results';
+            document.getElementById('quiz-options').innerHTML = '';
+            document.getElementById('quiz-feedback').style.display = 'none';
+            document.getElementById('quiz-navigation').style.display = 'none';
+        }
+
+        function startGame() {
+            alert('Game started! (This would launch your actual game in a real implementation)');
+            // Here you would implement or link to your actual game
+        }
+
+        // Initial setup
+        document.getElementById('quiz-display').style.display = 'none';
+    </script>
+</body>
+</html>
+
+<script>
+    const infoData = {
+    ransomware: {
+        title: 'Ransomware',
+        description: '<strong>A ransomware attack</strong> is a type of malicious cyberattack where attackers encrypt a victim\'s data or systems, rendering them inaccessible. The attackers then demand a ransom, typically in cryptocurrency, in exchange for the decryption key. Ransomware can spread through phishing emails, malicious attachments, compromised websites, or vulnerabilities in software.',
+        approach: `
+    <strong>How It Spreads:</strong><br>
+    <ul>
+        <li><strong>Phishing Emails:</strong> Emails contain malicious attachments or links disguised as legitimate files. Attackers often impersonate trusted entities like banks or colleagues. Users are tricked into downloading ransomware by clicking on links or opening attachments. Spear phishing targets specific individuals or organizations for higher success rates.</li>
+        <li><strong>Exploiting Vulnerabilities:</strong> Attackers exploit unpatched software or outdated systems to gain access. Common vulnerabilities include flaws in operating systems, browsers, or plugins. Zero-day vulnerabilities (unknown to vendors) are particularly dangerous. Attackers use exploit kits to automate the process of finding and exploiting weaknesses.</li>
+        <li><strong>Remote Desktop Protocol (RDP) Attacks:</strong> Hackers use weak or default credentials to gain access to systems via RDP. Brute-force attacks are used to guess passwords through repeated attempts. Once inside, attackers deploy ransomware across the network. RDP is often targeted because it provides direct access to critical systems.</li>
+        <li><strong>Malvertising:</strong> Malicious ads are displayed on legitimate websites, often through ad networks. Clicking on these ads redirects users to malicious sites hosting ransomware. Drive-by downloads infect systems without user interaction. Malvertising campaigns are difficult to detect as they use legitimate platforms.</li>
+        <li><strong>Supply Chain Attacks:</strong> Attackers compromise software vendors or third-party dependencies. Malicious code is injected into software updates or libraries. Users unknowingly install ransomware when updating or using the software. Examples include the SolarWinds and Kaseya attacks.</li>
+    </ul>`,
+
+    types: '<strong>Types of Ransomware Attacks:</strong><br><ul>' +
+                        '<li><strong>Encrypting Ransomware:</strong> Encrypts files, making them inaccessible without a decryption key. Examples: WannaCry, LockBit, Ryuk.</li>' +
+                        '<li><strong>Locker Ransomware:</strong> Locks users out of their devices, preventing access to the system. Examples: WinLocker, Police-themed ransomware.</li>' +
+                        '<li><strong>Double Extortion Ransomware:</strong> Encrypts files and threatens to leak sensitive data unless a ransom is paid. Examples: Maze, REvil, Conti.</li>' +
+                        '<li><strong>Ransomware-as-a-Service (RaaS):</strong> Attackers rent ransomware tools from developers to carry out attacks. Examples: DarkSide, LockBit.</li>' +
+                        '<li><strong>Mobile Ransomware:</strong> Targets mobile devices, locks them or encrypts files. Examples: SLocker, Koler.</li>' +
+                        '<li><strong>Scareware:</strong> Fake ransomware that displays alarming messages but does not actually encrypt or lock files.</li>' +
+                        '</ul>',
+
+
+    impact: '<strong>Impact of a Ransomware Attack:</strong><br><ul>' +
+    '<li><strong>Data Loss:</strong> Encrypted files may become permanently inaccessible if decryption keys are not provided. Critical business data, such as financial records or customer information, may be lost. Loss of intellectual property can harm long-term business prospects. Data recovery efforts may be time-consuming and costly.</li>' +
+    '<li><strong>Financial Losses:</strong> Ransom demands can range from thousands to millions of dollars. Recovery costs include IT repairs, forensic investigations, and downtime expenses. Legal fines may be imposed for non-compliance with data protection regulations. Loss of revenue due to halted operations can be devastating.</li>' +
+    '<li><strong>Operational Disruption:</strong> Businesses may be forced to shut down operations temporarily. Critical services, such as healthcare or utilities, can be severely impacted. Recovery can take days, weeks, or even months, depending on the attack\'s severity. Supply chains may be disrupted, affecting partners and customers.</li>' +
+    '<li><strong>Reputation Damage:</strong> Customers lose trust in organizations that fail to protect their data. Public disclosure of a breach can harm brand image and customer loyalty. Competitors may gain an advantage by capitalizing on the organization\'s weakened reputation. Rebuilding trust requires significant time and effort.</li>' +
+    '<li><strong>Legal and Compliance Issues:</strong> Non-compliance with regulations like GDPR or HIPAA can result in hefty fines. Lawsuits may be filed by affected customers or partners. Regulatory investigations can lead to additional penalties and reputational damage. Organizations may be required to implement costly security improvements.</li>' +
+    '</ul>',
+
+    actions: '<strong>Actions to Escape:</strong><br><ul>' +
+    '<li><strong>Disconnect infected devices:</strong> Immediately isolate affected systems to prevent ransomware from spreading. Disconnect from the internet and internal networks. Turn off Wi-Fi and Bluetooth to limit communication channels. Notify IT teams to begin containment efforts.</li>' +
+    '<li><strong>Check backups:</strong> Verify that backups are not infected or compromised. Use offline or cloud-based backups to restore data. Ensure backups are recent and complete to minimize data loss. Test backups regularly to confirm their reliability.</li>' +
+    '<li><strong>Avoid paying the ransom:</strong> Paying the ransom does not guarantee file recovery. It encourages attackers to target the organization again. Funds paid may be used to finance further criminal activities. Law enforcement agencies often advise against paying ransoms.</li>' +
+    '<li><strong>Seek professional help:</strong> Engage cybersecurity experts to assist with incident response. Forensic analysts can identify the attack vector and contain the threat. Legal advisors can help navigate compliance and regulatory issues. Public relations teams can manage communication with stakeholders.</li>' +
+    '<li><strong>Isolate infected systems:</strong> Quarantine affected devices to prevent lateral movement within the network. Disable shared drives and network access for compromised systems. Monitor network traffic for signs of further spread. Use segmentation to limit the attack’s scope.</li>',
+
+    precautions: '<strong>Precautions to Prevent Ransomware Attacks:</strong><br><ul>' +
+    '<li><strong>Backup Data Regularly:</strong> Schedule automated backups, store them in multiple locations, encrypt them, and test their integrity.</li>' +
+    '<li><strong>Use Strong Passwords & Multi-Factor Authentication (MFA):</strong> Use complex passwords, avoid reuse, and implement MFA for critical systems.</li>' +
+    '<li><strong>Update & Patch Software:</strong> Apply security patches regularly, enable automatic updates, and replace outdated software.</li>' +
+    '<li><strong>Be Wary of Phishing Emails:</strong> Verify senders, look for phishing signs, avoid suspicious links, and use email filtering tools.</li>' +
+    '<li><strong>Use Endpoint Protection:</strong> Install antivirus software, enable real-time scanning, and monitor for unusual activity.</li>' +
+    '</ul>',
+
+            
+    real_incidents: '<strong>Real Incidents of Ransomware Attacks:</strong><br><br>' +
+                    '<strong>1. WannaCry (2017) – Global Attack:</strong><br>' +
+                    '<ul><li>Exploited a vulnerability in Windows systems.</li>' +
+                    '<li>Affected over 200,000 computers in 150+ countries, including hospitals and businesses.</li>' +
+                    '<li>Spread using the EternalBlue exploit, developed by the NSA.</li>' +
+                    '<li>Estimated $4 billion in damages worldwide.</li></ul>' +
+                    '<strong>2. Colonial Pipeline Attack (2021) – USA:</strong><br>' +
+                    '<ul><li>DarkSide ransomware shut down a major US oil pipeline.</li>' +
+                    '<li>Fuel shortages and panic buying occurred.</li>' +
+                    '<li>The company paid a $4.4 million ransom, though some funds were later recovered by the FBI.</li></ul>' +
+                    '<strong>3. Costa Rica Government (2022) – National Crisis:</strong><br>' +
+                    '<ul><li>Conti ransomware attacked multiple government institutions.</li>' +
+                    '<li>Disrupted customs, tax collection, and healthcare services.</li>' +
+                    '<li>Costa Rica declared a national emergency, the first due to a cyberattack.</li></ul>'
+            },
+    phishing: {
+            title: 'Phishing',
+            description: '<strong>Phishing</strong> is a form of cyber deception in which cybercriminals act as a reputable organization (for example, a financial institution or technology company) to deceive victims into providing sensitive information, such as log-in credentials, credit card numbers, or personal information, in response to a phony message, email, or website.',
+            approach: `
+                <strong>How It Spreads:</strong><br>
+                <ul>
+                    <li><strong>Phishing Websites:</strong>  Fake login pages that collect user credentials when entered.</li>
+                    <li><strong>Smishing (SMS Phishing):</strong> Scam text messages leading to fraudulent websites or malware.</li>
+                    <li><strong>Social Media Scams:</strong> Fraudulent posts or profiles luring users into phishing traps.</li>
+                    <li><strong>Malicious Attachments:</strong>  Infected files (ex: PDFs and docs) that install malware when opened by victims.</li>
+                    <li><strong>Vishing (Voice Phishing):</strong> Impersonator calls aimed at obtaining sensitive information from victims.</li>
+                </ul>`,
+    types: '<strong>Types of Phishing Attacks:</strong><br><ul>' +
+    '<li><strong>Spear Phishing:</strong> Attack on specific individuals and/or organizations with extremely targeted information.</li>' +
+    '<li><strong>Whaling:</strong> Attack specifically targeting executives from the organization (CEOs, CFOs) to retrieve corporate data or finances.</li>' +
+    '<li><strong>Smishing (SMS Phishing):</strong> Scam messages that attempt to lure in a click on a link or request for action, such as urgent messaging to look at things.</li>' +
+    '<li><strong>Vishing (Voice Phishing):</strong> Fraudulent calls that impersonate actual banks, technical support, government agencies, etc.</li>' +
+    '</ul>',
+
+    impact: '<strong>Impact of a Phishing Attack:</strong><br><ul>' +
+    '<li><strong>Financial Loss:</strong> Phishing scams take money directly from victims or open the door for fraud, costing businesses billions every year.</li>' +
+    '<li><strong>Data Breaches:</strong> Attackers use phishing tactics to enter their systems and access sensitive personal and corporate data.</li>' +
+    '<li><strong>Identity Theft:</strong> Stolen credentials can be used by criminals to impersonate victims and conduct fraud.</li>' +
+    '<li><strong>Gateway to Larger Attacks:</strong> Phishing can often lead to ransomware, espionage, or compromise of a firm network.</li>' +
+    '<li><strong>Reputational Damage:</strong> Companies lose trust and credibility with customers when they fall victim to a phishing scam.</li>' +
+    '</ul>',
+    actions: '<strong>Actions to Escape Phishing Attacks:</strong><br><ul>' +
+            '<li><strong>Don’t Click Links:</strong> If an email or message looks suspicious, do not click on any links. Hover over the link to review the URL before you actually open it.</li>' +
+            '<li><strong>Look Closely at the Sender:</strong> Look at the total email address to identify possible inconsistencies within it. A misspelled sender is a good indicator of phishing. If you are unsure of the organization, contact or look it up directly.</li>' +
+            '<li><strong>Don’t Share Sensitive Information:</strong> A legitimate company is not going to ask for your password or financial information via email or message.</li>' +
+            '<li><strong>Report Suspicious Emails:</strong> If you receive suspicious phishing emails, forward them to your IT team, forward to anti-phishing authorities for investigation.</li>' +
+            '<li><strong>Scan for Malware:</strong> If you accidentally clicked a link, run a virus or malware scan as soon as possible. There is a chance that malicious software may have been downloaded.</li>' +
+            '</ul>',
+
+    precautions: `
+                <strong>Precautions Against Phishing Attacks:</strong><br>
+                <ul>
+                    <li><strong>Use Strong, Unique Passwords:</strong> Don't use common or repeated passwords; use a combination of letters, numbers, and symbols. Use a password manager to generate and save secure passwords.</li>
+                    <li><strong>Turn on Two-Factor Authentication (2FA):</strong> Adds a layer of security beyond your password (SMS codes, apps, etc.). Will prevent unauthorized access to your accounts, even if your login credentials are stolen.</li>
+                    <li><strong>Verify Links and Email Addresses Before Clicking:</strong> Always hover over links to confirm the link URL before you click. Check for misspellings or strange email addresses from senders before clicking any links in the email.</li>
+                    <li><strong>Keep Software Up-to-date:</strong> Update your operating system, browsers, and security software regularly to fix security vulnerabilities. Enable automatic updates for critical security fixes.</li>
+                    <li><strong>Educate and Train Users:</strong> Provide cyber-security awareness training for employees so they can recognize phishing scams. Conduct phishing test attempts to continue employee awareness.</li>
+                </ul>`,
+    real_incidents: `
+                <strong>Real Incidents of Phishing Attacks:</strong><br><br>
+                <strong>1. 2020 Twitter Bitcoin Scam:</strong><br>
+                <ul>
+                    <li>Attackers used spear-phishing on Twitter employees to gain access.</li>
+                    <li>High-profile accounts (Elon Musk, Barack Obama) were hacked.</li>
+                    <li>Scammers posted fake Bitcoin giveaways, stealing $118,000.</li>
+                </ul>
+                <strong>2. 2021 Colonial Pipeline Attack:</strong><br>
+                <ul>
+                    <li>Phishing email compromised an employee’s VPN credentials.</li>
+                    <li>Ransomware was deployed, shutting down major fuel supplies.</li>
+                    <li>Colonial Pipeline paid $4.4 million in ransom.</li>
+                </ul>
+                <strong>3. 2023 MGM Resorts Cyberattack:</strong><br>
+                <ul>
+                    <li>Attackers used vishing (voice phishing) to impersonate IT staff.</li>
+                    <li>Employee granted them access, leading to operational disruptions.</li>
+                    <li>Losses exceeded $100 million due to hotel and casino outages.</li>
+                </ul>`
+        },
+
+    bec: {
+            title: 'bec',
+            description: '<strong>Business Email Compromise (BEC)</strong> is a sophisticated scam where cybercriminals impersonate executives or trusted entities to deceive employees into transferring money or sharing sensitive data. It often involves email spoofing, social engineering, and compromised accounts.',
+            approach: `
+                <strong>How It Spreads:</strong><br>
+                <ul>
+                    <li><strong>Phishing Emails:</strong>  Fraudulent email messages attempt to lure employees into clicking on malicious links or disclosing credentials.</li>
+                    <li><strong>Spoofed Domains:</strong>  Attackers create fraudulent domains or email addresses to appear legitimate.</li>
+                    <li><strong>Compromised Accounts:</strong> Attackers gain control of real employee or vendor accounts to send out fraudulent requests.</li>
+                </ul>`,
+    types: '<strong>Types of BEC Attacks:</strong><br><ul>' +
+    '<li><strong>CEO Fraud:</strong> Criminals represent themselves as executives and try to convince an employee to immediately wire funds.</li>' +
+    '<li><strong>Fake Invoice Scams:</strong> Criminals impersonate a vendor and communicate submitted invoices, changing the payment details to dire consequences.</li>' +
+    '<li><strong>Attorney Impersonation:</strong> Criminals impersonate an attorney and try to solicit for a “confidential” business transaction.</li>' +
+    '<li><strong>Account Compromise:</strong> A legitimate email account is hacked and used to send a fraud request.  Employees must independently verify a wire request that looks suspicious.</li>' +
+    '<li><strong>Data Theft:</strong> Employees are manipulated into giving out sensitive payroll or tax related documents or information.</li>' +
+    '</ul>',
+
+    impact: '<strong>Impact of a BEC Attack:</strong><br><ul>' +
+    '<li><strong>Financial Damage:</strong> Millions taken per attack; funds rarely retrieved because they are quickly laundered.</li>' +
+    '<li><strong>Reputational Harm:</strong> Trust erodes, negative publicity ensues, and customer base may begin to dwindle.</li>' +
+    '<li><strong> Legal Liability:</strong> Organizations paid fines for noncompliance such as GDPR or CCPA and lawsuits from affected parties.</li>' +
+    '<li><strong>Operational Disruption:</strong> Investigating fraud creates delay in business while more rigid policies slow down operations.</li>' +
+    '</ul>',
+    actions: '<strong>Actions to Escape BEC Attacks:</strong><br><ul>' +
+            '<li><strong>Immediate Verification:</strong> Call the sender based on a trusted phone number (not from the email) to verify their request.</li>' +
+            '<li><strong>Enable Multi-Factor Authentication (MFA):</strong> MFA can prevent hackers from accessing accounts even with stolen credentials.</li>' +
+            '<li><strong>Report & Freeze Transactions:</strong> Notify your IT/security team and bank to secure the account before any loss.</li>' +
+            '</ul>',
+
+    precautions: `
+                <strong>Precautions Against BEC Attacks:</strong><br>
+                <ul>
+                    <li><strong>Employee Training:</strong> Hold frequent awareness and phishing tests to instruct staff on spotting emails requesting urgent payments, emails from fake senders, or other suspicious email.</li>
+                    <li><strong>Email Authentication (DMARC, SPF, DKIM):</strong> Use email authentication protocols to reduce email spoofing and ensure that employees only receive legitimate emails.</li>
+                    <li><strong>Payment Verification:</strong> Payments require two approvals for wire transfers, and ensure the phone or secure channels are used to verify vendor information before proceeding with any payments.</li>
+                </ul>`,
+    real_incidents: `
+                <strong>Real Incidents of BEC Attacks:</strong><br><br>
+                
+                <strong>1. Ubiquiti Networks (2016):</strong><br>
+                <ul>
+                    <li>Hackers impersonated company executives using spoofed emails, and they convinced finance personnel at Ubiquiti Networks to make fraudulent wire transfers totaling $46.7 million to overseas accounts, before the scheme was discovered.</li>
+                </ul>
+                <strong>2. Toyota Boshoku (2019):</strong><br>
+                <ul>
+                    <li>Attackers compromised a supplier's email system, and sent fake invoices with modified bank information that led the vehicle components manufacturer to fraudulently pay $37 million into criminal controlled accounts.</li>
+                </ul>
+                <strong>3. FACC (2020):</strong><br>
+                <ul>
+                    <li>Cybercriminals spoofed an email from the CEO and directed the Austrian aircraft parts manufacturer to wire €50 million for a fraudulent acquisition project, and the funds were quickly wired to unrecoverable accounts.</li>
+                </ul>`
+        },
+
+    card_skimming: {
+            title: 'Payment Card Skimming',
+            description: '<strong>Payment card skimming </strong> is a type of financial fraud in which criminals use hidden devices (called skimmers) or malicious software to illegally capture and steal credit/debit card information from victims without their knowledge.',
+            approach: `
+                <strong>How It Spreads:</strong><br>
+                <ul>
+                    <li><strong>Physical Skimmers on Card Readers:</strong> Physical Criminals can attach faux card readers or overlay devices to ATMs, fuel pumps, or POS terminals to capture card data when swiped/inserted into payment terminals, frequently used in conjunction with covertly placed cameras that record PIN entry.</li>
+                    <li><strong>Malware-Infected POS Systems:</strong> Infected with Malware Hackers may create malware (e.g., Magecart) to compromise payment terminals or place a malware-infected page on an e-commerce checkout page that secretly steals card numbers during a transaction.</li>
+                    <li><strong>Wireless Skimmers (Bluetooth-Enabled):</strong> Wireless skimmers are a more advanced form of skimmer that can store card data and send it wirelessly via Bluetooth, allowing criminals to remotely collect the data without needing to physically take the device to another location.</li>
+                </ul>`,
+    types: '<strong>Types of PayCard Skimming Attacks:</strong><br><ul>' +
+    '<li><strong>ATM Skimming:</strong> Criminals install hidden devices (skimmers) on ATM card slots in order to steal card data. These skimmers may include a hidden camera or keypad overlay, which records the PIN as you enter it. The stolen data can then be used to create counterfeit cards or used to make unauthorized withdrawals.</li>' +
+    '<li><strong> POS Skimming:</strong> Criminals compromise payment terminals in stores or restaurants by either deploying malware or using skimmers to record transactions while your card details are entered. In addition, not all skimmers are used remotely—dishonest retail employees may use either handheld skimmers or scammers to take your data as well.</li>' +
+    '<li><strong>E-Skimming:</strong> Hackers inject malicious code into e-commerce checkout pages or payment forms to intercept checking card details as they are entered by customers. Hackers often deploy these attacks with little to no detection until a fraudulent payment shows up. These attacks are referred to by many names, such as Magecart. </li>' +
+    '</ul>',
+
+    impact: '<strong>Impact of a PayCard Skimming Attack:</strong><br><ul>' +
+    '<li><strong>Financial Loss for Victims & Banks:</strong> Skimming results in the loss of money from victims accounts by the establishment of fraudulent transactions. These account losses create losses for banks in the form of chargeback, a fraud investigation, and reimbursement under fraud policies. </li>' +
+    '<li><strong>Identity Theft & Unauthorized Transactions:</strong> Obtaining the victims credit card data allows criminals to make unauthorized purchases, and/or reselling the valuable data on the dark web. Victims will be subject to potential long-term identity fraud and damage to their credit histories.</li>' +
+    '</ul>',
+    actions: '<strong>Actions to Escape PayCard Skimming Attack:</strong><br><ul>' +
+            '<li><strong>Review Your Bank Statements:</strong> Make a habit of reviewing your transaction history to monitor for unexpected changes. If you notice any transactions you do not recognize, immediately alert your bank so that they can block the card to prevent further potential fraud.</li>' +
+            '<li><strong>Use Contactless/NFC or Mobile Wallets:</strong> These methods encrypt payment data that is sent to the retailer. Using these methods limits your exposure to skimmers, as you do not insert a card into a card reader, so it is a safer method than either swiping or inserting a card.</li>' +
+            '</ul>',
+
+    precautions: `
+                <strong>Precautions Against PayCard Skimming Attack:</strong><br>
+                <ul>
+                    <li><strong>Inspect card readers for tampering:</strong>  Look for loose parts, something that wasn't attached at the manufacturers factory, or video cameras mounted around ATMs/POS devices; wiggle the card slot to see if it is loose and may have a skimmer over it.</li>
+                    <li><strong>Use ATMs inside banks (safer than standalone ones):</strong> ATMs inside banks, that the bank monitors, are generally safer to use because they have more security and monitoring.  Your chances of getting skimmed is much lower inside, than a stand-alone ATM out in the open.</li>
+                    <li><strong>Enable transaction alerts:</strong>Have real-time text/email and mobile alerts for any charge on your card to detect any or unauthorized activity early and have the time to report it to the originate bank immediately.</li>
+                </ul>`,
+    real_incidents: `
+                <strong>Real Incidents of PayCard Skimming Attack:</strong><br><br>
+                
+                <strong>1. KrebsOnSecurity reported $2M stolen through gas pump skimmers (2019):</strong><br>
+                <ul>
+                    <li>Criminals installed covert skimmers on fuel dispensers across the United States, stealing card data from brand-new victims who stopped at gas stations.</li>
+                </ul>
+                <strong>2. Magecart attacks skimmed card data from online shops (2021):</strong><br>
+                <ul>
+                    <li>Hackers injected malicious scripts into e-commerce checkout pages capturing credit card numbers secretly during online purchases.</li>
+                </ul>`
+        },
+
+    insider_threats: {
+            title: 'Insider Threats',
+            description: '<strong>Insider threats</strong> are a cybersecurity risk that occurs when an insider, such as an employee, contractor, or partner, misuses their access—either willfully (maliciously) or inadvertently (negligently)—to steal data, damage systems, and otherwise negatively impact the organizations security, operations, or reputation.',
+            approach: `
+                <strong>How It Spreads:</strong><br>
+                <ul>
+                    <li><strong>Unauthorized Access to Data:</strong> Employees use their access for malicious intent such as stealing, leaking, or manipulating sensitive data (e.g., copying files to a personal drive).</li>
+                    <li><strong>Misuse of Credentials:</strong> Employees share or misuse someone else's login details to evade security (e.g., using a co-worker's username and password to access a restricted system).</li>
+                    <li><strong>Intentional Sabotage:</strong> An insider causes operational disruption by deleting data administration, inserting malware, and disabling security controls.</li>
+                </ul>`,
+    types: '<strong>Types of Insider Threats:</strong><br><ul>' +
+    '<li><strong>Data Theft:</strong>Stealing sensitive information (e.g., customer information, proprietary material) by copying, sharing or moving data from an organization without authorization.' +
+    '<li><strong>Fraud:</strong> The act of misappropriating financial or recordkeeping information or transactions in a manner that provides personal gain. </li>' +
+    '<li><strong>IT Sabotage:</strong>  IT sabotage might include anything from deploying a type of malware could be an act of IT sabotage, through disabling servers or destroying backups.  </li>' +
+    '</ul>',
+
+    impact: '<strong>Impact of a Insider Threats:</strong><br><ul>' +
+    '<li><strong>Monetary Loss:</strong> Stealing funds, fraud, or regulatory fines from data breaches could cost millions. </li>' +
+    '<li><strong>Loss of Trust and Reputation:</strong> After sensitive data leaks or scandals, customers lose faith and the brand becomes devalued.</li>' +
+    '<li><strong>Legal Consequences:</strong> Organizations can go through lawsuits, and being in violation of compliance (e.g., GDPR, HIPAA), having criminal charges filed against the organization.</li>' +
+    '</ul>',
+    actions: '<strong>Actions to Escape Insider Threats:</strong><br><ul>' +
+            '<li><strong>Revoke Access Immediately:</strong> Terminate the insider’s credentials, access to the network, and privileges to lessen any damage from their actions.</li>' +
+            '<li><strong>Investigate & Contain Breach:</strong>  Review logs, safeguard compromised systems, and cut-off exposed data to diminish exposure to any future breach.</li>' +
+            '<li><strong>Notify Authorities:</strong> Notify law enforcement, industry regulators, or counsel if action was criminal in nature or data was breached.</li>' +
+            '</ul>',
+
+    precautions: `
+                <strong>Precautions Against Insider Threats:</strong><br>
+                <ul>
+                    <li><strong>Role-Based Access Control (RBAC):</strong> Provide the employee with only required permissions that is needed for their job to limit malicious or erroneous use.</li>
+                    <li><strong>Employee Monitoring:</strong> Utilize tools for tracking suspicious activities, such as frequent logins from different locations or sizable data transference.</li>
+                    <li><strong>Audit & Training:</strong> Perform periodic audits of security and educate employees with the best cybersecurity practices to hopefully discourage negligence or bad intent.</li>
+                </ul>`,
+    real_incidents: `
+                <strong>Real Incidents of Insider Threats:</strong><br><br>
+                
+                <strong>1. Edward Snowden (2013):</strong><br>
+                <ul>
+                    <li>A former NSA contract employee released confidential details about the agency's surveillance programs and the targets of its intelligence operations on a global scale.  </li>
+                </ul>
+                 <strong>2. Tesla (2018):</strong><br>
+                <ul>
+                    <li> A disgruntled Tesla employee tampered with manufacturing systems and sent private information to third parties. </li>
+                </ul>
+                <strong>3. UBS Rogue Trader (2011):</strong><br>
+                <ul>
+                    <li>An employee was able to make unauthorized trades, which resulted in a $2.3 billion loss to one of the largest banking frauds in history.</li>
+                </ul>`
+        },
+
+    ddos: {
+            title: 'Distributed Denial of Service(DDoS)',
+            description: '<strong>A Distributed Denial of Service (DDoS)</strong> attack is a malicious attempt to disrupt the normal functioning of a targeted server, service, or network by overwhelming it with flood of internet traffic. Numerous compromised devices (botnets) generate the flood of traffic, making it impossible for legitimate users to access the targeted resources.',
+            approach: `
+                <strong>How It Spreads:</strong><br>
+                <ul>
+                    <li><strong>Botnet Recruitment:</strong> Attackers compromise devices (PCs, IoT cameras, servers) with malware, transforming them into bots.</li>
+                    <li><strong>Command & Control (C&C):</strong> Attackers remotely command botnets to bombard a target with malicious traffic.</li>
+                    <li><strong>Exploiting Weaknesses:</strong> Attackers use commonly used, vulnerable IoT devices (unpatched firmware, default passwords) as cannon fodder.</li>
+                </ul>`,
+    types: '<strong>Types of Distributed Denial of Service Attack:</strong><br><ul>' +
+    '<li><strong>Volumetric Attacks:</strong> Flood network bandwidth with huge amounts of traffic (e.g., UDP flooding, ICMP flooding, DNS amplification). </li>' +
+    '<li><strong>Protocol Attacks:</strong> Exploit weaknesses in the network protocol layers (e.g., SYN attack, Ping of Death, Smurf attack).</li>' +
+    '<li><strong>Application-Layer Attacks:</strong>  Target applications and services by sending requests that exhaust the application (e.g., HTTP flood, Slowloris, zero-day attacks).</li>' +
+    '</ul>',
+
+    impact: '<strong>Impacts of a Distributed Denial of Service Attack:</strong><br><ul>' +
+    '<li><strong>Loss of Service:</strong> Interrupts access for legitimate users and business conduct.</li>' +
+    '<li><strong>Monetary Loss:</strong>  No revenue is derived without service, and costs are incurred to recover.</li>' +
+    '<li><strong>Loss of Reputation:</strong>  Damages trust with customers and brand credibility.</li>' +
+    '</ul>',
+    actions: '<strong>Actions to Distributed Denial of Service Attack:</strong><br><ul>' +
+            '<li><strong>Implement DDoS Defenses:</strong> Use third-party vendors (i.e., Arbor Networks, Cloudflare, and many others) to monitor and filter attack traffic, using either hardware or software solutions. </li>' +
+            '<li><strong>Implement Cloud Protection:</strong>  Use security layers, like AWS Shield or Akamai Prolexic, that can absorb and redirect very large-scale attacks. </li>' +
+            '<li><strong>Blackhole Malicious IPs:</strong> Block inbound traffic from known sources of an attack using firewall rules or security groups.</li>' +
+            '</ul>',
+
+    precautions: `
+                <strong>Precautions Against Distributed Denial of Service Attack:</strong><br>
+                <ul>
+                    <li><strong>Employ firewalls and IDS/IPS:</strong> Use a next-generation firewall and intrusion detection/prevention systems to inspect malicious traffic and block it from entering your network.</li>
+                    <li><strong>Patch security vulnerabilities:</strong> Regularly patch the operating system, software, and firmware in order to close potential vulnerabilities.</li>
+                    <li><strong>Filter and rate-limit traffic:</strong> Use access control lists, geo-blocking, and request rate limiting to mitigate attack traffic.</li>
+                </ul>`,
+    real_incidents: `
+                <strong>Real Incidents of Distributed Denial of Service Attack:</strong><br><br>
+                
+                <strong>1. Dyn Attack (2016):</strong><br>
+                <ul>
+                    <li>The compromised IoT devices used in the massive distributed denial-of-service (DDoS) attack devastated DNS services, impacting sites such as Twitter, Netflix, and PayPal.  </li>
+                </ul>
+                 <strong>2. DDoS Attack Against AWS (2.3 Tbps in 2020):</strong><br>
+                <ul>
+                    <li> This was the largest DDoS ever, using exploited connected directory protocol (CLDAP) servers to unleash an overwhelming amount of IPv4 traffic against Amazon Web Services (AWS) infrastructure.</li>
+                </ul>
+                <strong>3. Cyberwar in Ukraine in (2022):</strong><br>
+                <ul>
+                    <li>Coordinated attacks sponsored by the Russian state against financial transactions targeted some Ukrainian banks and government sites, resulting in massive outages for days.</li>
+                </ul>`
+        },
+
+    supply_chain: {
+            title: 'Supply Chain Attacks',
+            description: '<strong>A supply chain attack</strong> exploits vulnerabilities in third-party vendors, suppliers, or service providers to infiltrate a larger target, bypassing direct security measures. These attacks compromise trusted software, hardware, or services to spread malware or steal data.',
+            approach: `
+                <strong>How It Spreads:</strong><br>
+                <ul>
+                    <li><strong> Infected Updates:</strong> Hackers inject malware into genuine software updates, which unsuspecting users download and install.</li>
+                    <li><strong>Compromised Third-Party Software:</strong>  An attacker modifies software provided by a vendor, or modifies libraries, and when a victim downloads and installs the software they become infected. </li>
+                    <li><strong>Tampered Hardware :</strong> An attack modifies the firmware or installs malicious hardware when the computer system is manufactured or distributed.</li>
+                </ul>`,
+    types: '<strong>Types of Supply Chain Attacks</strong><br><ul>' +
+    '<li><strong>Infection of Software:</strong> Attackers likely compromise legitimate software, often through "software update" to install malware once the user installs it. (Example: SolarWinds hack) </li>' +
+    '<li><strong>Controlled Hardware:</strong> Maliciously changed actual hardware or firmware before giving the equipment to the user. (Example: Counterfeit chips in devices).</li>' +
+    '<li><strong>Dependency Attacks:</strong> Hackers compromise third-party libraries or code that the software is dependent on. (Example: Log4j vulnerability).</li>' +
+    '</ul>',
+
+    impact: '<strong>Impacts of a Supply Chain Attacks:</strong><br><ul>' +
+    '<li><strong>Breach of Data:</strong> Attackers would penetrate trusted vendors and expropriate sensitive data (customer information, intellectual property), which could lead to violations of compliance mandates and incident investigations and penalties. </li>' +
+    '<li><strong>Loss of Revenue:</strong> Organizations will incur costs for incident response, regulatory fines, paying the ransom, and the loss of business due to downtime or erosion of trust.</li>' +
+    '<li><strong>Limited Capabilities:</strong> Critical systems might fail to respond, and production, services, and logistics could cease, resulting in long recovery times due to compromised systems being embedded.</li>' +
+    '</ul>',
+    actions: '<strong>Actions to Supply Chain Attacks:</strong><br><ul>' +
+            '<li><strong>Isolate Affected Systems:</strong> Disconnect devices/networks as quickly as possible to stop lateral movement and limit exposure. </li>' +
+            '<li><strong>Revoke Compromised Credentials:</strong>  Change existing passwords, API keys, certificates; review and implement multi-factor authentication (MFA) to prevent the attacker from gaining access. </li>' +
+            '<li><strong>Patch and Conduct Forensic Analysis:</strong> Deploy a patch that has been verified by the vendor, eradicating the exploit initially, and audit your systems to identify and mitigate a reoccurrence of the same type of attak.</li>' +
+            '</ul>',
+
+    precautions: `
+                <strong>Precautions Against Supply Chain Attacks:</strong><br>
+                <ul>
+                    <li><strong>Validating Software Sources & Utilizing Code Signing:</strong> Download software exclusively from trusted, validated sources. Ensure that software is code-signed (signed with the developer's digital signature). </li>
+                    <li><strong>Managing Third Party Security & Supply Chain Dependencies Risks:</strong> Evaluate third parties (vendors) on a regular basis to ensure security practices (for example, SOC 2 audits).Conduct third party risk assessments through automated tooling (like SBOM (software bill of materials) capabilities). </li>
+                    <li><strong>Implementing Least Privilege & Network Segmentation:</strong> Limit users/systems to only the necessary access to applicable resources to reduce the spread of an attack throughout the enterprise.</li>
+                </ul>`,
+    real_incidents: `
+                <strong>Real Incidents of Supply Chain Attacks:</strong><br><br>
+                
+                <strong>1. SolarWinds (2020):</strong><br>
+                <ul>
+                    <li>Russian hackers gained access using SolarWinds' Orion software update mechanism "backdoor" to compromise 18,000 different organizations, including elements of the US government, using a payload called Sunburst.</li>
+                </ul>
+                 <strong>2. NotPetya (2017):</strong><br>
+                <ul>
+                    <li> Russian operatives compromised updates of M.E.Doc, Ukrainian accounting software, and deployed "wiper" payload disguised as ransomware.In total, NotPetya caused approximately 10 Billion dollars in damages by leveraging compromised software to cripple major enterprises such as Maersk, Merck, and many more.  </li>
+                </ul>
+                <strong>3. CCleaner (2017):</strong><br>
+                <ul>
+                    <li>Hackers compromised CCleaner (a trusted utility tool) produced by Piriform. The hackers uploaded malware that affected 2.3 million users of CCleaner through auto-update. Attackers obtained user data and were able to install backdoors that permitted secondary attacks on leading technology companies like Cisco and Samsung.  </li>
+                </ul>`
+        },
+
+
+
+        };
+        function showInfo(key) {
+    if (infoData[key]) {
+        const data = infoData[key];
+        // Image URLs for each attack type
+        const imageMap = {
+            ransomware: 'ransomware.jpg',
+            phishing: 'phishing.jpg',
+            bec: 'bec.jpg',
+            card_skimming: 'card_skimming.png',
+            insider_threats: 'insider_threats.jpg',
+            ddos: 'ddos.jpg',
+            supply_chain: 'supply_chain.jpg'
+        };
+        
+        document.getElementById('info-display').innerHTML = `
+            <h1>${data.title}</h1>
+            <div style="display:flex; align-items:center; margin-bottom:20px;">
+                <p style="flex:2;">${data.description}</p>
+                <img src="${imageMap[key]}" alt="${data.title}" style="flex:1; max-height:200px; border-radius:8px; margin-left:20px; object-fit:cover; box-shadow:0 4px 8px rgba(0,0,0,0.1);">
+            </div>
+            <p>${data.approach}</p>
+            <p>${data.types}</p>
+            <p>${data.impact}</p>
+            <p>${data.actions}</p>
+            <p>${data.precautions}</p>
+            <p>${data.real_incidents}</p>
+        `;
+    }
+
+}
+</script>  
+</body>
+</html>
